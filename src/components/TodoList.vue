@@ -1,30 +1,39 @@
 <script setup lang="ts">
+import { Todo } from '@/models/Todo';
 import { ref } from 'vue';
 
-
-const addTodo = () => {
-    todo.value.push(new Todo(todoText.value));
-}
-
-const todos = ref<Todo[]>([]);
-const todoText = ref("");
 const handleInput = (e: any) => { 
     todoText.value = e.target.value
 ;}
+const addTodo = () => {
+    todos.value.push(new Todo(todoText.value));
+    todoText.value = "";
+};
+const toggleTodo = (i: number) => {
+    todos.value[i].done = !todos.value[i].done;
+};
+const removeTodo = (i: number) => {
+    todos.value.splice(i, 1);
+};
 
-
-
-
+const todos = ref<Todo[]>([]);
+const todoText = ref("");
 </script>
-
 <template>
- 
+    <div>
+        <input type="text" :value="todoText" @input="handleInput"/>
+        <button @click="addTodo">Spara</button>
+    </div>
 
- <div>
-<input type="text" :value="todoText" @input="handleInput"/>
-<button @click="addTodo">Spara</button>
+    <ul>
+        <li v-for="(todo, i) in todos" :key="todo.id">
+            <span :class="todo.done ? 'done' : ''">{{ todo.text }}</span>
+            <button @click="() => toggleTodo(i)">Ändra</button>
+            <button @click="() => removeTodo(i)">Ta bort</button>
+        </li>
+    </ul>
 
- </div>
+
 
 
 </template>
@@ -38,4 +47,13 @@ const handleInput = (e: any) => {
 
 <style scoped>
 
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li > .done {
+    text-decoration: line-through;
+}
 </style>
