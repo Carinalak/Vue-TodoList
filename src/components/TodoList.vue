@@ -31,7 +31,7 @@ const todoText = ref("");
 <section class="container">
     <div><h1>Att göra lista</h1></div>
     <div class="inputbox">
-        <input type="text" :value="todoText" @input="handleInput" @keyup.enter="addTodo"  placeholder="Skriv din Todo här"/>
+        <input type="text" :value="todoText" @input="handleInput" @keyup.enter="addTodo" placeholder="Skriv din Todo här"/>
         <button class="savebutton" @click="addTodo">Spara</button>
     </div>
 
