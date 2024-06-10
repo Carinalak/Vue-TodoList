@@ -5,8 +5,13 @@ import { ref } from 'vue';
 
 const handleInput = (e: any) => { 
     todoText.value = e.target.value
-;}
+};
+
 const addTodo = () => {
+    if (todoText.value.trim() === "") {
+        alert("Du måste skriva något!");
+        return;
+    }
     todos.value.push(new Todo(todoText.value));
     todoText.value = "";
 };
@@ -101,7 +106,7 @@ input {
     padding: 5px;
 }
 input::placeholder {
-            color:blueviolet;
+            color: blueviolet;
         }
 .savebutton {
     width: 50px;
