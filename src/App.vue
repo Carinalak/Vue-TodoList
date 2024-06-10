@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import TodoList from './components/TodoList.vue'
+import Wrapper from './components/Wrapper.vue'
 
 
 
@@ -10,7 +11,7 @@ import TodoList from './components/TodoList.vue'
 </script>
 
 <template>
- 
+<Styling/>
 
 <TodoList/>
 
